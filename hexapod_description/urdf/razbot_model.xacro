@@ -21,7 +21,7 @@
     <joint name="base_joint" type="fixed">
         <parent link="base_link" />
         <child link="body_link" />
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+        <origin xyz="0.0 0.0 0.065" rpy="0.0 0.0 0.0" />
     </joint>
 
 	<link name="body_link">
@@ -61,7 +61,7 @@
 	<joint name="imu_joint" type="fixed">
 		<parent link="base_link" />
 		<child link="imu_link" />
-		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		<origin xyz="0.0 0.0 0.092" rpy="0.0 0.0 -${pi/2}" />
 	</joint>
 	<link name="imu_link">
         <inertial>
@@ -203,7 +203,7 @@
 
 		<!-- tibia -->
 		<joint name="tibia_joint_${side}${position}" type="revolute">
-			<origin xyz="0.0 -${femur_length} 0.0" rpy="${pi} 0.0 0.0" />
+			<origin xyz="-0.004 -${femur_length} 0.0" rpy="${pi} 0.0 0.0" />
 			<parent link="femur_${side}${position}" />
 			<child link="tibia_${side}${position}" />
 			<axis xyz="0.0 0.0 ${axis}" />
@@ -249,6 +249,32 @@
         </link>
         <gazebo reference="tibia_${side}${position}">
             <material>Gazebo/DarkGrey</material>
+        </gazebo>
+
+                <!-- foot -->
+        <joint name="foot_joint_${side}${position}" type="fixed">
+            <origin xyz="${tibia_length} 0.025 0.0" rpy="0.0 0.0 0.0" />
+            <parent link="tibia_${side}${position}" />
+            <child link="foot_${side}${position}" />
+        </joint>
+        <link name="foot_${side}${position}">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+                <mass value="0.00001"/>
+                <inertia
+                    ixx="1.0" ixy="0.0"  ixz="0.0"
+                    iyy="1.0" iyz="0.0"
+                    izz="1.0" />
+            </inertial>
+        </link>
+        <gazebo>
+            <plugin name="f3d_controller" filename="libgazebo_ros_f3d.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50</updateRate>
+                <bodyName>foot_${side}${position}</bodyName>
+                <topicName>${side}${position}_ground_feedback</topicName>
+                <frameName>foot_${side}${position}</frameName>
+            </plugin>
         </gazebo>
 
 	</xacro:macro>

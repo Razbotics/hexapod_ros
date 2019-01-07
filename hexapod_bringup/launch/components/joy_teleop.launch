@@ -2,6 +2,8 @@
 <!-- Gamepad launch file -->
 
 <launch>
+        <arg name="joy_mapping" default="joystick_ds4"/>
+        <rosparam command="load" file="$(find hexapod_description)/params/$(arg joy_mapping).yaml" />
       	<!-- JOY ROS NODE -->
 	<node respawn="true" pkg="joy" type="joy_node" name="ps4_joy" >
     	<param name="dev" type="string" value="/dev/input/js1" />

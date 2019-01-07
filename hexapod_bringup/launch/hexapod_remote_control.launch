@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gamepad launch file -->
+
+<launch>
+     
+        <include file="$(find hexapod_bringup)/launch/components/joy_teleop.launch"/>
+        <include file="$(find hexapod_bringup)/launch/rviz.launch" />   
+
+</launch>

@@ -1,7 +1,7 @@
 # Configuration Settings
 
 # Non teleop mode for naviagtion stack, Gazebo, etc type modes.
-# Controller will still have standup and sitdown functions for safty reasons 
+# Controller will still have standup and sitdown functions for safty reasons
 NON_TELEOP: false
 
 # Speed limit in Hz for the master loop rate
@@ -50,9 +50,9 @@ TIBIA_LENGTH:  0.133
 TARSUS_LENGTH: 0.00
 
 # Body FK maximum rotation
-BODY_MAX_ROLL: !degrees 10
-BODY_MAX_PITCH: !degrees 10
-BODY_MAX_YAW: !degrees 20
+BODY_MAX_ROLL: !degrees 8
+BODY_MAX_PITCH: !degrees 8
+BODY_MAX_YAW: !degrees 15
 
 # Body Standing Height
 STANDING_BODY_HEIGHT: 0.08
@@ -68,11 +68,13 @@ COMPENSATE_INCREMENT: !degrees 0.01
 COMPENSATE_TO_WITHIN: !degrees 1
 
 # Gait Settings
-CYCLE_LENGTH: 50
+CYCLE_LENGTH: 50        # Dont go above 60
+CYCLE_INCREMENT: 1.0   # Dont go below 0.25
 LEG_LIFT_HEIGHT: 0.07
-MAX_LIFT_HEIGHT: 0.070
+MAX_LIFT_HEIGHT: 0.07
 
-GAIT_STYLE: "RIPPLE"
+GAIT_STYLE: "TRIPOD"
+GAIT_EXTRA_HEIGHT: 0.0  # negative lift = Leg lift height * gait exta height
 
 # Speed in Hz that the servos interpolate between gait poses
 INTERPOLATION_LOOP_RATE: 550
