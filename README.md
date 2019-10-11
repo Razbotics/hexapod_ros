@@ -110,31 +110,27 @@ Change: CMAKE_CXX_FLAGS:STRING=-O3 -pipe -march=armv7-a -mcpu=cortex-a9 -mfloat-
 ------
 _Click on picture for redirect to YouTube video._
 
+Rviz recording of 3D mapping using [RTABmap](https://www.youtube.com/watch?v=-3Ejgy1nFOg).
 
-Rviz recording of 3D mapping using RTABmap.
+Small video of [Golem](https://www.youtube.com/watch?v=IP-1HebkZnU) research platform and IMU testing.
 
-[![ScreenShot](http://img.youtube.com/vi/-3Ejgy1nFOg/0.jpg)]
-(https://www.youtube.com/watch?v=-3Ejgy1nFOg)
+Renée Love's odometry test video using the [PhantomX](https://www.youtube.com/watch?v=VYBAM0MrvWI).
 
-Small video of Golem research platform and IMU testing.
-
-[![ScreenShot](http://img.youtube.com/vi/IP-1HebkZnU/0.jpg)]
-(https://www.youtube.com/watch?v=IP-1HebkZnU)
-
-Renée Love's odometry test video using the phantomX.
-
-[![ScreenShot](http://img.youtube.com/vi/VYBAM0MrvWI/0.jpg)]
-(https://www.youtube.com/watch?v=VYBAM0MrvWI)
 
 
 ## Pictures
 
 Rviz screenshot of point cloud and laserscan active.
-![ScreenShot](http://forums.trossenrobotics.com/gallery/files/8/6/6/6/depthwithlaser.jpg)
+![GitHub Logo](http://forums.trossenrobotics.com/gallery/files/8/6/6/6/depthwithlaser.jpg)
 
 2D room mapping in Rviz.
-![ScreenShot](http://forums.trossenrobotics.com/gallery/files/8/6/6/6/2d_slam.jpg)
+![GitHub Logo](http://forums.trossenrobotics.com/gallery/files/8/6/6/6/2d_slam.jpg)
 
 Renée Love's adaptation of the Hexapod stack for Trossen's  [PhantomX](http://www.trossenrobotics.com/phantomx-ax-hexapod.aspx).
-![ScreenShot](http://forums.trossenrobotics.com/gallery/files/1/2/6/6/9/screenshot_from_2015-04-22_20_23_15.png)
+![GitHub Logo](http://forums.trossenrobotics.com/gallery/files/1/2/6/6/9/screenshot_from_2015-04-22_20_23_15.png)
+
+Shubhankar Das's
+[Razbot](https://youtu.be/3IBgmm3x5x4)
+![GitHub Logo](https://lh3.googleusercontent.com/N5z7ATZq0eaMWTv7v5XYIOdbEsQM1jyp6lws6E9mAZa1ogqgviYuHYIuMfc0RGx8AZ3k6x7EVvieVGfCSsInIp_-SYCBtOXgf0ForopkTIshZm0WRJyr2MfipI_1Zc31TgrbtKeemTZqYjIZNoOfk_1BFToxkV5ISci61D78fC3ajVCpb19U0YVpuYX3tiNChKYvq7AhxdrEm4B--NT0PEiSPsLlu9yOghYNdaDVoNrSSnd5QF1qRzP0R7Ew0bRJKCW7hc3Wx1burWUXcqofMe_fTGaxhNsSJXayUatIRdFo6--BaIL_s5N6GctM80rTRve9Lb_d5r5LhRQC7nHRJ_jLKp_EwWPRYxYnk7JyOQYLR-WdEY2gHPUjdzTgv50n2E0bgdGlfBMbF92YZ5VY5iFlu-cKAoulsLHIIicWz_RNDcwhj0_W0QXDbmVLJ7rhzoOEi_Plz2Bujc80ShQAuVHv5rqjuQKsRdp0zJ_TjmGEPe4toz-jth2WojNMaJ75Aa3NA38O0UL8ctyTBDOHAtxpw1xmbr3ySvhjUNRY5dxRpaWW3JYyfElLzXmCqQgw8Ise95s-aa7HP3T9GewPncYFRzi1B23kK_e3dCqiEMXgbgXOQfd_ay_DyVPEr2lhiMtOgpSs0MvRR8Zuw-e0M_Lovf5PhGxLRRo4PiQedIZHntUQmfgjDEk=w772-h576-no)
+
 
