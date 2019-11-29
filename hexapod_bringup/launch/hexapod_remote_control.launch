@@ -5,5 +5,5 @@
      
         <include file="$(find hexapod_bringup)/launch/components/joy_teleop.launch"/>
         <include file="$(find hexapod_bringup)/launch/rviz.launch" />   
-
+        <include file="$(find hexapod_bringup)/launch/components/sounds.launch" />
 </launch>

@@ -1,4 +1,5 @@
-footprint: [[-0.31215, -0.2725], [-0.31215, 0.2725], [0.31215, 0.2725], [0.31215, -0.2725]]
+#footprint: [[-0.31215, -0.2725], [-0.31215, 0.2725], [0.31215, 0.2725], [0.31215, -0.2725]]
+robot_radius: 0.35
 footprint_padding: 0.01
 
 robot_base_frame: base_link
@@ -21,4 +22,4 @@ obstacles_laser:
     laser: {data_type: LaserScan, clearing: true, marking: true, topic: scan, inf_is_valid: true}
 
 inflation:
-    inflation_radius: 1.0
+    inflation_radius: 0.55

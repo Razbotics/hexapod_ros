@@ -39,14 +39,14 @@ COXA_TO_CENTER_Y: [0.08475, 0.170, 0.08475, 0.08475, 0.170, 0.08475]
 # math to find positions of front and back legs POS_Y = Middle leg start position * cos(60 degrees) (0.5)
 # math to find positions of front and back legs POS_X = Middle leg start position * sin(60 degrees) (0.866)
 # IK is solved in local space currently, hence the reason right and left have same distance values
-INIT_FOOT_POS_X: [-0.12124, 0.0, 0.12124, -0.12124, 0.0, 0.12124]
-INIT_FOOT_POS_Y: [0.07, 0.140, 0.07, 0.07, 0.140, 0.07]
-INIT_FOOT_POS_Z: [0.03, 0.03, 0.03, 0.03, 0.03, 0.03]
+INIT_FOOT_POS_X: [-0.09526, 0.0, 0.09526, -0.09526, 0.0, 0.09526]
+INIT_FOOT_POS_Y: [0.055, 0.11, 0.055, 0.055, 0.11, 0.055]
+INIT_FOOT_POS_Z: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
 
 # Define Leg Measurements in meters
 COXA_LENGTH:   0.052
 FEMUR_LENGTH:  0.065
-TIBIA_LENGTH:  0.133
+TIBIA_LENGTH:  0.135
 TARSUS_LENGTH: 0.00
 
 # Body FK maximum rotation
@@ -70,8 +70,8 @@ COMPENSATE_TO_WITHIN: !degrees 1
 # Gait Settings
 CYCLE_LENGTH: 50        # Dont go above 60
 CYCLE_INCREMENT: 1.0   # Dont go below 0.25
-LEG_LIFT_HEIGHT: 0.07
-MAX_LIFT_HEIGHT: 0.07
+LEG_LIFT_HEIGHT: 0.04
+MAX_LIFT_HEIGHT: 0.05
 
 GAIT_STYLE: "TRIPOD"
 GAIT_EXTRA_HEIGHT: 0.0  # negative lift = Leg lift height * gait exta height

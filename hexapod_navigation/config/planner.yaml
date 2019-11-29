@@ -7,18 +7,18 @@ NavfnROS:
 
 TrajectoryPlannerROS:
   # Robot Configuration Parameters
-  acc_lim_x: 0.008464
-  acc_lim_y: 0.008464
-  acc_lim_th: 0.1089
+  #acc_lim_x: 0.008464
+  #acc_lim_y: 0.008464
+  #acc_lim_th: 0.1089
 
-  max_vel_x: 0.092
-  min_vel_x: 0.0
-  max_vel_y: 0.092
-  min_vel_y: 0.0
+  #max_vel_x: 0.092
+  #min_vel_x: 0.0
+  #max_vel_y: 0.092
+  #min_vel_y: 0.0
 
-  max_vel_theta: 1.0
-  min_vel_theta: -1.0
-  min_in_place_vel_theta: 0.2
+  #max_vel_theta: 1.0
+  #min_vel_theta: -1.0
+  #min_in_place_vel_theta: 0.2
 
   holonomic_robot: true
   escape_vel: -0.1
@@ -60,12 +60,12 @@ DWAPlannerROS:
   acc_lim_y: 0.008464
   acc_lim_th: 0.1089
 
-  max_vel_x: 0.092
+  max_vel_x: 0.08
   min_vel_x: 0.0
-  max_vel_y: 0.092
+  max_vel_y: 0.08
   min_vel_y: 0.0
 
-  max_trans_vel: 0.092
+  max_trans_vel: 0.08
   min_trans_vel: 0.1
   max_rot_vel: 0.33
   min_rot_vel: 0.01

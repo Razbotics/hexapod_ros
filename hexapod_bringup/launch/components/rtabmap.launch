@@ -8,6 +8,8 @@
         <remap from="image" to="/camera/depth_registered/image_raw" />
         <remap from="camera/image" to="/camera/depth_registered/image_raw" />
         <remap from="camera/scan" to="scan" />
+        <param name="range_max" type="double" value="4"/>
+        
     </node>
     <group ns="rtabmap">
         <!-- sync depth with odometry -->
@@ -23,7 +25,10 @@
           <remap from="rgb/camera_info_out" to="/rtabmap/camera/depth_registered/camera_info"/>
           <remap from="odom_out"            to="/rtabmap/odometry/synchronized"/>
         </node>
-        <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" args="--delete_db_on_start">
+    
+        <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" args="--delete_db_on_start"> 
+          <param name="Mem/IncrementalMemory" type="string" value="true"/>
+          <param name="localization" type="bool" value="true"/>
           <param name="frame_id" type="string" value="base_link"/>
           <remap from="odom" to="/rtabmap/odometry/synchronized"/>
 
@@ -42,11 +47,12 @@
 
           <!-- RTAB-Map's parameters -->
           <param name="RGBD/OptimizeFromGraphEnd" type="string" value="true"/>
+          <param name="RGBD/LocalLoopDetectionSpace" type="string" value="true"/>
           <param name="Kp/MaxDepth" type="string" value="4.0"/>
-          <param name="LccIcp/Type" type="string" value="2"/>
-          <param name="LccIcp2/CorrespondenceRatio" type="string" value="0.2"/>
-          <param name="LccBow/MinInliers" type="string" value="5"/>
-          <param name="LccBow/InlierDistance" type="string" value="0.1"/>
+          <!--param name="RGBD/Strategy" type="string" value="2"/-->
+          <param name="LccIcp2/CorrespondenceRatio" type="string" value="0.3"/>
+          <param name="Vis/MinInliers" type="string" value="12"/>
+          <param name="Vis/InlierDistance" type="string" value="0.1"/>
           <param name="RGBD/AngularUpdate" type="string" value="0.01"/>
           <param name="RGBD/LinearUpdate" type="string" value="0.01"/>
           <param name="Rtabmap/TimeThr" type="string" value="0"/>
@@ -54,7 +60,10 @@
           <param name="RGBD/PoseScanMatching" type="string" value="true"/>
           <param name="Rtabmap/DetectionRate" type="string" value="1"/>
           <param name="RGBD/PoseScanMatching" type="string" value="true"/>
-          <param name="RGBD/LocalLoopDetectionSpace" type="string" value="true"/>
+          <!--param name="RGBD/OptimizeIterations" type="string" value="50"/-->
+          <param name="RGBD/ProximityBySpace"     type="string" value="false"/>
+          <param name="RGBD/OptimizeFromGraphEnd" type="string" value="false"/>
+          <param name="Reg/Force3DoF"             type="string" value="true"/>
         </node>
     </group>
 </launch>

@@ -15,7 +15,7 @@
            the filter will not begin computation until it receives at least one message from
            one of the inputs. It will then run continuously at the frequency specified here,
            regardless of whether it receives more measurements. Defaults to 30 if unspecified. -->
-      <param name="frequency" value="30"/>
+      <param name="frequency" value="60"/>
 
       <!-- The period, in seconds, after which we consider a sensor to have timed out. In this event, we
            carry out a predict cycle on the EKF without correcting it. This parameter can be thought of
@@ -27,7 +27,7 @@
            are operating in a planar environment and want to ignore the effect of small variations in the
            ground plane that might otherwise be detected by, for example, an IMU. Defaults to false if
            unspecified. -->
-      <param name="two_d_mode" value="false"/>
+      <param name="two_d_mode" value="true"/>
 
       <!-- REP-105 (http://www.ros.org/reps/rep-0105.html) specifies three principal coordinate frames: map,
            odom, and base_link. base_link is the coordinate frame that is affixed to the robot. The robot's
@@ -75,7 +75,7 @@
            message types lack certain variables. For example, a TwistWithCovarianceStamped message has no pose information, so
            the first six values would be meaningless in that case. Each vector defaults to all false if unspecified, effectively
            making this parameter required for each sensor. -->
-      <rosparam param="odom0_config">[true, true, true,
+      <rosparam param="odom0_config">[false, false, false,
                                       false, false, false,
                                       true, true, false,
                                       false, false, true,
@@ -83,9 +83,9 @@
 
       <rosparam param="imu0_config">[false, false, false,
                                      false, false, false,
-                                     true, true,  false,
+                                     false, false,  false,
                                      false,  false,  true,
-                                     true, true, false]</rosparam>
+                                     false, false, false]</rosparam>
 
       <!-- The best practice for including new sensors in robot_localization's state estimation nodes is to pass in velocity
            measurements and let the nodes integrate them. However, this isn't always feasible, and so the state estimation
@@ -104,7 +104,7 @@
            this is acceptable. For orientation variables, it can lead to trouble. Users should make sure that all orientation
            variables have at least one source of absolute measurement. -->
       <param name="odom0_differential" value="false"/>
-      <param name="imu0_differential" value="false"/>
+      <param name="imu0_differential" value="true"/>
 
       <!-- When the node starts, if this parameter is true, then the first measurement is treated as a "zero point" for all
            future measurements. While you can achieve the same effect with the differential paremeter, the key difference is
@@ -115,7 +115,7 @@
 
       <!-- If we're including accelerations in our state estimate, then we'll probably want to remove any acceleration that
            is due to gravity for each IMU. If you don't want to, then set this to false. Defaults to false if unspecified. -->
-      <param name="imu0_remove_gravitational_acceleration" value="false"/>
+      <param name="imu0_remove_gravitational_acceleration" value="true"/>
 
       <!-- If you're having trouble, try setting this to true, and then echo the /diagnostics_agg topic to see
            if the node is unhappy with any settings or data. -->
@@ -152,19 +152,19 @@
            vroll, vpitch, vyaw, ax, ay, az. Defaults to the matrix below if unspecified. -->
       <rosparam param="process_noise_covariance">[0.05, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.05, 0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                                                  0.0,    0.0,    0.06, 0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                                                  0.0,    0.0,    0.05, 0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.03, 0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.03, 0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.06, 0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.025, 0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.025, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
-                                                  0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.04, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
+                                                  0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.025, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.01, 0.0,    0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.01, 0.0,    0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.02, 0.0,    0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.01, 0.0,    0.0,
                                                   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.01, 0.0,
-                                                  0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.015]</rosparam>
+                                                  0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,  0.01]</rosparam>
 
       <!-- This represents the initial value for the state estimate error covariance matrix. Setting a diagonal value (a
            variance) to a large value will result in early measurements for that variable being accepted quickly. Users should

@@ -25,7 +25,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Author: Kevin M. Ochs
+// Author: Kevin M. Ochs 
+// Contributor: Shubhankar Das
 
 
 #include <gait.h>
@@ -42,7 +43,9 @@ Gait::Gait( void )
     ros::param::get( "LEG_LIFT_HEIGHT", LEG_LIFT_HEIGHT );
     ros::param::get( "NUMBER_OF_LEGS", NUMBER_OF_LEGS );
     ros::param::get( "GAIT_STYLE", GAIT_STYLE);
-    cycle_period_ = 25;
+    ros::param::get( "GAIT_EXTRA_HEIGHT", GAIT_EXTRA_HEIGHT);
+    ros::param::get( "CYCLE_INCREMENT", CYCLE_INCREMENT);
+    cycle_period_ = CYCLE_LENGTH * 0.5;
     is_travelling_ = false;
     in_cycle_ = false;
     extra_gait_cycle_ = 1;
@@ -57,6 +60,7 @@ Gait::Gait( void )
     }
     period_distance = 0;
     period_height = 0;
+    travel_factor = 0;
 }
 
 //=============================================================================
@@ -66,9 +70,6 @@ Gait::Gait( void )
 void Gait::cyclePeriod( const geometry_msgs::Pose2D &base, hexapod_msgs::FeetPositions *feet, geometry_msgs::Twist *gait_vel )
 {
     
-    period_height = sin( cycle_period_ * PI / CYCLE_LENGTH );
-    
-
     // Calculate current velocities for this period of the gait
     // This factors in the sinusoid of the step for accurate odometry
     current_time_ = ros::Time::now();
@@ -78,11 +79,13 @@ void Gait::cyclePeriod( const geometry_msgs::Pose2D &base, hexapod_msgs::FeetPos
     gait_vel->angular.z = ( ( PI*base.theta ) /  CYCLE_LENGTH ) * period_height * ( 1.0 / dt );
     last_time_ = current_time_;
 
+
     for( int leg_index = 0; leg_index < NUMBER_OF_LEGS; leg_index++ )
     {
         // Lifts the leg and move it forward
         if( cycle_leg_number_[leg_index] == 0 && is_travelling_ == true )
         {
+            period_height = sin( cycle_period_ * PI / CYCLE_LENGTH );
             period_distance = cos( cycle_period_ * PI / CYCLE_LENGTH );
             feet->foot[leg_index].position.x = base.x * period_distance;
             feet->foot[leg_index].position.y = base.y * period_distance;
@@ -92,18 +95,20 @@ void Gait::cyclePeriod( const geometry_msgs::Pose2D &base, hexapod_msgs::FeetPos
         // Moves legs backward pushing the body forward
         if( cycle_leg_number_[leg_index] == 1 )
         {
+            period_height = sin( cycle_period_ * PI * gait_factor / CYCLE_LENGTH );
             period_distance = cos( cycle_period_ * PI * gait_factor / CYCLE_LENGTH);
             feet->foot[leg_index].position.x = - base.x * period_distance ;
             feet->foot[leg_index].position.y = - base.y * period_distance ;
-            feet->foot[leg_index].position.z = 0;
+            feet->foot[leg_index].position.z = - LEG_LIFT_HEIGHT * period_height * travel_factor;
             feet->foot[leg_index].orientation.yaw = - base.theta * period_distance;
         }
         if( cycle_leg_number_[leg_index] == 2 )
         {
+            period_height = sin( (CYCLE_LENGTH + cycle_period_)* PI * gait_factor/ CYCLE_LENGTH);
             period_distance = cos((CYCLE_LENGTH + cycle_period_)* PI * gait_factor/ CYCLE_LENGTH);
             feet->foot[leg_index].position.x = -base.x * period_distance ;
             feet->foot[leg_index].position.y = -base.y * period_distance ;
-            feet->foot[leg_index].position.z = 0;
+            feet->foot[leg_index].position.z = - LEG_LIFT_HEIGHT * period_height * travel_factor;
             feet->foot[leg_index].orientation.yaw = -base.theta * period_distance ;
         }
     }
@@ -132,17 +137,20 @@ void Gait::gaitCycle( const geometry_msgs::Twist &cmd_vel, hexapod_msgs::FeetPos
         ( std::abs( smooth_base_.theta ) > 0.00436332313 ) ) // 0.25 degree
     {
         is_travelling_ = true;
+        travel_factor = GAIT_EXTRA_HEIGHT;
     }
     else
     {
         is_travelling_ = false;
+        
         // Check to see if the legs are in a non rest state
         for( int leg_index = 0; leg_index < NUMBER_OF_LEGS; leg_index++ )
         {
             if( ( std::abs( feet->foot[leg_index].position.x ) > 0.001 ) || // 1 mm
                 ( std::abs( feet->foot[leg_index].position.y ) > 0.001 ) || // 1 mm
                 ( std::abs( feet->foot[leg_index].orientation.yaw ) > 0.034906585 ) || // 2 degrees
-                  std::abs( feet->foot[leg_index].position.z) > 0.001 ) // 1 mm
+                ( std::abs( feet->foot[leg_index].position.z) > 0.001 ) || // 1 mm
+                  std::abs( feet->foot[leg_index].position.z) < - 0.001 ) // -1 mm
             {
                 // If so calculate the rest of the cycle and add another complete cycle
                 // This forces another cycle to allow all legs to set down after travel is stopped
@@ -151,15 +159,16 @@ void Gait::gaitCycle( const geometry_msgs::Twist &cmd_vel, hexapod_msgs::FeetPos
             }
             else
             {
-                extra_gait_cycle_ = 1;
+                extra_gait_cycle_ = 0;
             }
         }
 
         // countdown for in_cycle state
-        if( extra_gait_cycle_ > 1 )
+        if( extra_gait_cycle_ > 0 )
         {
-            extra_gait_cycle_--;
-            in_cycle_ = !( extra_gait_cycle_ == 1 );
+            extra_gait_cycle_= extra_gait_cycle_ - CYCLE_INCREMENT;
+            travel_factor = 0;
+            in_cycle_ = !( extra_gait_cycle_ == 0);
         }
     }
 
@@ -167,12 +176,13 @@ void Gait::gaitCycle( const geometry_msgs::Twist &cmd_vel, hexapod_msgs::FeetPos
     if( is_travelling_ == true || in_cycle_ == true  )
     {
         cyclePeriod( smooth_base_, feet, gait_vel );
-        cycle_period_++;
+        cycle_period_= cycle_period_ + CYCLE_INCREMENT;
     }
     else
     {
         // Reset period to start just to be sure. ( It should be here anyway )
         cycle_period_ = 0;
+        
     }
 
     // Loop cycle and switch the leg groupings for cycle

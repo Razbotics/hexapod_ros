@@ -53,15 +53,18 @@ class Gait
         ros::Time current_time_, last_time_;
         bool is_travelling_;      // True if the robot is moving, not just in a cycle
         bool in_cycle_;           // True if the robot is in a gait cycle
-        int CYCLE_LENGTH;         // Number of steps in cycle
+        float CYCLE_LENGTH;         // Number of steps in cycle
         int NUMBER_OF_LEGS;       // Leg order in cycle of the leg
         double LEG_LIFT_HEIGHT;   // Height of a leg cycle
         std::string GAIT_STYLE;    // gait style Tripod or Ripple
-        int cycle_period_;        // Current period in cycle
-        int extra_gait_cycle_;    // Forcing some extra timed cycles
+        float cycle_period_;        // Current period in cycle
+        float extra_gait_cycle_;    // Forcing some extra timed cycles
         double period_distance;
         double period_height;
-        double gait_factor;
+        float gait_factor;
+        float travel_factor;
+        float GAIT_EXTRA_HEIGHT;
+        float CYCLE_INCREMENT;
         std::vector<int> cycle_leg_number_; // Leg gait order (grouping) ['RR', 'RM', 'RF', 'LR', 'LM', 'LF']
 };
 

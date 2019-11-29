@@ -155,6 +155,7 @@ void Control::publishOdometry( const geometry_msgs::Twist &gait_vel )
     odom_trans.header.stamp = current_time_odometry_;
     odom_trans.header.frame_id = "odom";
     odom_trans.child_frame_id = "base_link";
+    if(body_.position.z < 0) body_.position.z = 0;
 
     odom_trans.transform.translation.x = pose_x_;
     odom_trans.transform.translation.y = pose_y_;
