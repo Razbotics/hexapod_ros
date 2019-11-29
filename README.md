@@ -131,6 +131,6 @@ Renée Love's adaptation of the Hexapod stack for Trossen's  [PhantomX](http://w
 
 Shubhankar Das's
 [Razbot](https://youtu.be/3IBgmm3x5x4)
-![GitHub Logo](https://razbotics.wordpress.com/2019/10/15/robotics-project-razbot/)
+![GitHub Logo](https://razbotics.files.wordpress.com/2019/10/img_20190114_111216_886-2.jpg)
 
 
