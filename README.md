@@ -131,6 +131,6 @@ Renée Love's adaptation of the Hexapod stack for Trossen's  [PhantomX](http://w
 
 Shubhankar Das's
 [Razbot](https://youtu.be/3IBgmm3x5x4)
-![GitHub Logo](https://lh3.googleusercontent.com/N5z7ATZq0eaMWTv7v5XYIOdbEsQM1jyp6lws6E9mAZa1ogqgviYuHYIuMfc0RGx8AZ3k6x7EVvieVGfCSsInIp_-SYCBtOXgf0ForopkTIshZm0WRJyr2MfipI_1Zc31TgrbtKeemTZqYjIZNoOfk_1BFToxkV5ISci61D78fC3ajVCpb19U0YVpuYX3tiNChKYvq7AhxdrEm4B--NT0PEiSPsLlu9yOghYNdaDVoNrSSnd5QF1qRzP0R7Ew0bRJKCW7hc3Wx1burWUXcqofMe_fTGaxhNsSJXayUatIRdFo6--BaIL_s5N6GctM80rTRve9Lb_d5r5LhRQC7nHRJ_jLKp_EwWPRYxYnk7JyOQYLR-WdEY2gHPUjdzTgv50n2E0bgdGlfBMbF92YZ5VY5iFlu-cKAoulsLHIIicWz_RNDcwhj0_W0QXDbmVLJ7rhzoOEi_Plz2Bujc80ShQAuVHv5rqjuQKsRdp0zJ_TjmGEPe4toz-jth2WojNMaJ75Aa3NA38O0UL8ctyTBDOHAtxpw1xmbr3ySvhjUNRY5dxRpaWW3JYyfElLzXmCqQgw8Ise95s-aa7HP3T9GewPncYFRzi1B23kK_e3dCqiEMXgbgXOQfd_ay_DyVPEr2lhiMtOgpSs0MvRR8Zuw-e0M_Lovf5PhGxLRRo4PiQedIZHntUQmfgjDEk=w772-h576-no)
+![GitHub Logo](https://www.google.co.in/url?sa=i&source=images&cd=&ved=2ahUKEwiU_5q3iZDmAhVNcCsKHdE0DtkQjRx6BAgBEAQ&url=https%3A%2F%2Frazbotics.wordpress.com%2F&psig=AOvVaw1B4gP_TfgozuQgsr6c2qTZ&ust=1575139328026042)
 
 
